@@ -1,0 +1,12 @@
+Package: mathfuncs
+Title: Some helpful mathematical functions
+Version: 1.0.1
+Authors@R: person("James", "Hay", email = "jameshay218@gmail.com", role = c("aut", "cre"))
+Description: This package contains a number of mathematical functions that I
+    have found repeatedly useful in my work. At the moment, these are primarily
+    numeric conversion functions
+Depends:
+    R (>= 3.0.0)
+License: None whatsoever - sorry!
+LazyData: true
+RoxygenNote: 4.1.1.9001
