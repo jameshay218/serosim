@@ -448,6 +448,7 @@ individual_simulation <- function(
 #' @param times vector of times in days.
 #' @return matrix of times and longitundinal simulation for each infecting strain
 #' @seealso \code{\link{single_strain}}
+#' @export
 multiple_strains <- function(tis, y0, params, times){
     #' Create matrix with a column for each infection and a column for times
     dat <- matrix(ncol=length(tis)+1, nrow=length(times))
@@ -484,6 +485,7 @@ multiple_strains <- function(tis, y0, params, times){
 #' @param times vector of times to run model over
 #' @return vector of HAI values at each day of the simulation
 #' @seealso \code{\link{multiple_strains}}
+#' @export
 single_strain <- function(mu_pars, tp_pars, m_pars, ti_pars, y0, times){
     ii <- 1
     y <- NULL
@@ -539,6 +541,7 @@ get_infection_ratios <- function(chain, thin, burnin, adaptive_period, t1){
 #' @param passed_dat Data should be a 4 column data frame: First column time of first sample; second column is values from first sample; third column is time of second sample; fourth column is values from second sample
 #' @param strain string of strain name for plot (will be used as plot title)
 #' @return Returns the total ggplot object as a gridExtra object
+#' @export
 plot_serology <- function(passed_dat, strain){
     max1 <- max(table(passed_dat[,2]))
     max2 <- max(table(passed_dat[,4]))
@@ -682,6 +685,7 @@ plot_serology <- function(passed_dat, strain){
 #'
 #' Simple plot of a 4 column SIR run - time, S, I and R values.
 #' @param y 4 column data frame of the time and 3 compartments
+#' @export
 plotSIR <- function(y){
   plot(y[,2],type='l',col="blue",ylim=c(0,1))
   lines(y[,3],col="red")
@@ -696,6 +700,7 @@ plotSIR <- function(y){
 #' @param startPops vector of initial S, I and R sizes
 #' @param params vector containing values for beta and gamma
 #' @return the 4 column data frame of SIR dynamics
+#' @export
 SIRsim <- function(t,startPops,params){
   require(deSolve)
 SIRode <- function(t, x, params) {
@@ -718,6 +723,7 @@ return(y)
 #' SIR inc curve
 #'
 #' Generates an incidence curve from an SIR model. Same parameters as \code{\link{SIRsim}}.
+#' @export
 generateIncCurve <- function(t, startPops, params){
   return(SIRsim(t,startPops,params)[,3])
 }
