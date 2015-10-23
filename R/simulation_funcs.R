@@ -352,8 +352,6 @@ overall_simulation <- function(
         for(row in 1:nrow(tmp)){
             #' First column in times
             for(col in 2:ncol(tmp)){
-                print(addNoise[row])
-                print(row)
                 if(addNoise[row]) tmp[row,col] <- NOISE_FUNCTION(tmp[row,col],noiseParams)
                 if(!logTitre){
                     tmp[row,col] <- 5*2^tmp[row,col]
@@ -379,7 +377,6 @@ overall_simulation <- function(
         tmpColnames <- c(tmpColnames, name1, name2)
     }
     tmpColnames <- c(tmpColnames, infection_labels)
-    print(tmpColnames)
     colnames(dat) <- tmpColnames
 
     return(dat)
