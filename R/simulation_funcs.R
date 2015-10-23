@@ -470,12 +470,7 @@ multiple_strains <- function(tis, y0, params, times){
         mu <- mu_pars[i-1,]
         #' If stochastic boosting required, generate mu from poisson distribution
         if(STOCHASTIC) mu <- rpois(length(mu),mu)
-        print(mu[indices])
-        print(tp_pars[i-1,indices])
-        print(m_pars[i-1,indices])
-        print(tis)
-        print(y0[i-1])
-        print(times)
+        print(y0)
         dat[,i] <- single_strain(mu[indices], tp_pars[i-1,indices],m_pars[i-1,indices], tis, y0[i-1],times)
     }
     return(dat)    
