@@ -6,7 +6,7 @@
 \usage{
 fluscape_simulation(fluscape_data, n = NULL, fluscape_strains, mu_pars,
   tp_pars, m_pars, STOCHASTIC = TRUE, incidenceVectors,
-  removeOutliers = TRUE, fluscapeT0 = TRUE, addNoise = TRUE,
+  removeOutliers = TRUE, fluscapeT0 = TRUE, addNoise = c(FALSE, TRUE),
   plotSerology = FALSE, noiseParams = c(0.79, 0.2, 8))
 }
 \arguments{

@@ -171,7 +171,7 @@ fluscape_simulation <- function(
     incidenceVectors,
     removeOutliers=TRUE,
     fluscapeT0=TRUE,
-    addNoise=TRUE,
+    addNoise=c(FALSE,TRUE),
     plotSerology=FALSE,
     noiseParams=c(0.79,0.2,8)
     ){
@@ -187,8 +187,6 @@ fluscape_simulation <- function(
     v1_strains <- v1_strains[v1_strains %in% colnames(fluscape_data)]
     v2_strains <- v2_strains[v2_strains %in% colnames(fluscape_data)]
 
-    print(v1_strains)
-    
     #' Get only data that we need - sampling times and titres
     dat <- fluscape_data[,c("PART_SAMPLE_TIME.V1",v1_strains, "PART_SAMPLE_TIME.V2",v2_strains)]
     #' Omit NA
@@ -236,7 +234,7 @@ fluscape_simulation <- function(
     measurement_times <- dat[,c("PART_SAMPLE_TIME.V1","PART_SAMPLE_TIME.V2")]
     measurement_times <- unname(as.matrix(measurement_times))
 
-    final <- overall_simulation(n, v1_strains, incidenceVectors, measurement_times, list(mu_pars,tp_pars,m_pars,STOCHASTIC), y0s, start, end, c(FALSE,addNoise), noiseParams, FALSE, TRUE, multiple_strains, add_noise)
+    final <- overall_simulation(n, v1_strains, incidenceVectors, measurement_times, list(mu_pars,tp_pars,m_pars,STOCHASTIC), y0s, start, end, addNoise, noiseParams, FALSE, TRUE, multiple_strains, add_noise)
     
     if(plotSerology){
           for(i in 1:length(v1_strains)){
@@ -298,7 +296,7 @@ overall_simulation <- function(
     y0s,
     startTime=0,
     endTime=200,
-    addNoise = TRUE,
+    addNoise = c(TRUE,TRUE),
     noiseParams=c(0.79,0.2,8),
     logTitre=FALSE,
     discreteData=TRUE,
@@ -354,6 +352,8 @@ overall_simulation <- function(
         for(row in 1:nrow(tmp)){
             #' First column in times
             for(col in 2:ncol(tmp)){
+                print(addNoise[row])
+                print(row)
                 if(addNoise[row]) tmp[row,col] <- NOISE_FUNCTION(tmp[row,col],noiseParams)
                 if(!logTitre){
                     tmp[row,col] <- 5*2^tmp[row,col]

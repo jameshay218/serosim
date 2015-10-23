@@ -6,7 +6,7 @@
 \usage{
 overall_simulation(individuals = 100, strains = c("H3N2", "H5N1", "H1N1"),
   strainIncidences, samplingTimes, processParams, y0s, startTime = 0,
-  endTime = 200, addNoise = TRUE, noiseParams = c(0.79, 0.2, 8),
+  endTime = 200, addNoise = c(TRUE, TRUE), noiseParams = c(0.79, 0.2, 8),
   logTitre = FALSE, discreteData = TRUE,
   PROCESS_FUNCTION = multiple_strains, NOISE_FUNCTION = add_noise)
 }
