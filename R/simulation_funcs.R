@@ -465,7 +465,7 @@ multiple_strains <- function(tis, y0, params, times){
     STOCHASTIC <- params[[4]]
 
     #' For each strain, calculate the single trajectory
-    for(i in 2:(length(ti_pars)+1)){
+    for(i in 2:(length(tis)+1)){
         mu <- mu_pars[i-1,]
         #' If stochastic boosting required, generate mu from poisson distribution
         if(STOCHASTIC) mu <- rpois(length(mu),mu)
