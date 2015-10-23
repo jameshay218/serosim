@@ -232,6 +232,7 @@ fluscape_simulation <- function(
     y0s[y0s==0] <- 5
     y0s <- log(y0s/5,2)
     y0s <- unname(as.matrix(y0s))
+    print(y0s)
     
     measurement_times <- dat[,c("PART_SAMPLE_TIME.V1","PART_SAMPLE_TIME.V2")]
     measurement_times <- unname(as.matrix(measurement_times))
@@ -470,7 +471,6 @@ multiple_strains <- function(tis, y0, params, times){
         mu <- mu_pars[i-1,]
         #' If stochastic boosting required, generate mu from poisson distribution
         if(STOCHASTIC) mu <- rpois(length(mu),mu)
-        print(y0)
         dat[,i] <- single_strain(mu[indices], tp_pars[i-1,indices],m_pars[i-1,indices], tis, y0[i-1],times)
     }
     return(dat)    
