@@ -1,0 +1,14 @@
+#' If not installed, get devtools and install the serosim package
+library(devtools)
+#' old install command
+#' install_github("serosim","jameshay218")
+install_github("jameshay218/serosim")
+library(serosim)
+
+#' Make sure that you are in a WD which can run the fluscape code, and can source the utility functions
+#' source("...../GeneralUtility.R")
+
+cur_dir <- getwd()
+#' setwd("folder that can access fluscape data")
+fluscape_data <- load.and.merge.part.V1.V2()
+setwd(cur_dir)
