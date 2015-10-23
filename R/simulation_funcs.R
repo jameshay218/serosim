@@ -187,6 +187,8 @@ fluscape_simulation <- function(
     v1_strains <- v1_strains[v1_strains %in% colnames(fluscape_data)]
     v2_strains <- v2_strains[v2_strains %in% colnames(fluscape_data)]
 
+    print(v1_strains)
+    
     #' Get only data that we need - sampling times and titres
     dat <- fluscape_data[,c("PART_SAMPLE_TIME.V1",v1_strains, "PART_SAMPLE_TIME.V2",v2_strains)]
     #' Omit NA
@@ -227,12 +229,9 @@ fluscape_simulation <- function(
     samples <- sort(samples)
     dat <- dat[samples,]
 
-    
-    y0s <- dat[,v1_strains]
     y0s[y0s==0] <- 5
     y0s <- log(y0s/5,2)
     y0s <- unname(as.matrix(y0s))
-    print(y0s)
     
     measurement_times <- dat[,c("PART_SAMPLE_TIME.V1","PART_SAMPLE_TIME.V2")]
     measurement_times <- unname(as.matrix(measurement_times))
