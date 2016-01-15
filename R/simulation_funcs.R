@@ -447,8 +447,10 @@ individual_simulation <- function(
 #' @return matrix of times and longitundinal simulation for each infecting strain
 #' @seealso \code{\link{single_strain}}
 #' @export
+#' @examples
+#' test
 multiple_strains <- function(tis, y0, params, times){
-    #' Create matrix with a column for each infection and a column for times
+#' Create matrix with a column for each infection and a column for times
     dat <- matrix(ncol=length(tis)+1, nrow=length(times))
     dat[,1] <- times
 

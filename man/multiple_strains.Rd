@@ -21,6 +21,14 @@ matrix of times and longitundinal simulation for each infecting strain
 \description{
 Data generating function for a multiple strain, boosting and waning serological model.
 }
+\examples{
+test
+Create matrix with a column for each infection and a column for times
+Sort infection times into ascending order and store indices of sorted order. Add this to list of process parameters if needed
+Extract parameters from list
+For each strain, calculate the single trajectory
+If stochastic boosting required, generate mu from poisson distribution
+}
 \seealso{
 \code{\link{single_strain}}
 }

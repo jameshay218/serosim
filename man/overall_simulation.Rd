@@ -70,6 +70,11 @@ For each strain, generate a cumulative incidence vector
 For each individual, generate an infection time for each strain and simulate
 Generate an infection time for each strain
 We assume that two infections can't happen on the same day, so check that this hasn't happened
+   while(any(duplicated(infection_times))){
+    for(j in 1:length(strainIncidences)){
+     infection_times[j] <- generate_infection_time(infection_risks_inc[[j]])
+}
+}
 Pass the infection times, process parameters, sampling times, starting values and strains to the data
 generating function
 If data is discrete, take floor of matrix
