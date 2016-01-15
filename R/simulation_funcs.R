@@ -10,9 +10,10 @@
 #' @examples
 #' generate_uniform_inc(0.4, 1,100)
 generate_uniform_inc <- function(p_inf, t1, t2){
-    time <- seq(t1,t2, by=1)
-    p_day <- p_inf/length(time)
-    final <- rep(p_day, length(time))
+    time <- seq(t1,t2+1, by=1)
+    p_day <- p_inf/(length(time)-1)
+    final <- rep(p_day, length(time)-1)
+    final <- c(final, 1-p_inf)
     return(final)    
 }
 
@@ -68,7 +69,7 @@ generate_infection_time <- function(cuminc){
     while(j <= length(cuminc) & samp > cuminc[j]){
         j <- j + 1
     }
-    return(j)       
+    return(j-1)       
 }
 
 #' Adds observation error
@@ -332,11 +333,11 @@ overall_simulation <- function(
             infection_times[j] <- generate_infection_time(infection_risks_inc[[j]])
         }
         #' We assume that two infections can't happen on the same day, so check that this hasn't happened
-        while(any(duplicated(infection_times))){
-            for(j in 1:length(strainIncidences)){
-                infection_times[j] <- generate_infection_time(infection_risks_inc[[j]])
-            }
-        }
+    #'    while(any(duplicated(infection_times))){
+       #'     for(j in 1:length(strainIncidences)){
+          #'      infection_times[j] <- generate_infection_time(infection_risks_inc[[j]])
+            #'}
+       #' }
 
         #' Pass the infection times, process parameters, sampling times, starting values and strains to the data
         #' generating function
